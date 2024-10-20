@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Shipment {{ shipment.shipment_id }}</h1>
+
+<ul>
+    <li>Origin: {{ shipment.origin }}</li>
+    <li>Destination: {{ shipment.destination }}</li>
+    <li>Status: {{ shipment.status }}</li>
+    <li>Driver: {{ shipment.driver }}</li>
+</ul>
+
+<a href="{% url 'shipments_list' %}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

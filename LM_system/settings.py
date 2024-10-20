@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts',
     'shipments',
     'drivers',
-    'customers',
-    'reports',
+    'deliveries',
 ]
 
 MIDDLEWARE = [
@@ -58,8 +58,8 @@ ROOT_URLCONF = 'LM_system.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'],
+     'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'LM_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'logistics',
+        'NAME': 'logistic_manage',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',

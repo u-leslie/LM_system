@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>All Shipments</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Shipment ID</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Status</th>
+            <th>Driver</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for shipment in shipments %}
+        <tr>
+            <td>{{ shipment.shipment_id }}</td>
+            <td>{{ shipment.origin }}</td>
+            <td>{{ shipment.destination }}</td>
+            <td>{{ shipment.status }}</td>
+            <td>{{ shipment.driver }}</td>
+            <td>
+                <a href="{% url 'shipment_detail' shipment.shipment_id %}" class="btn btn-info">Details</a>
+           
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'shipment_create' %}" class="btn btn-primary">Add New Shipment</a>
+{% endblock %}

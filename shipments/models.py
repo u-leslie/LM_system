@@ -1,11 +1,16 @@
-from django.db import models
+import uuid
+from django.db import models  
 from drivers.models import Driver
-from customers.models import Customer
+
 
 class Shipment(models.Model):
-    tracking_number = models.CharField(max_length=255)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
-    delivery_address = models.CharField(max_length=255)
-    status = models.CharField(max_length=50, choices=[('Pending', 'Pending'), ('Delivered', 'Delivered')])
+    shipment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    origin = models.CharField(max_length=255)
+    destination = models.CharField(max_length=255)
+    status = models.CharField(max_length=50, choices=[('Pending', 'Pending'), ('Shipped', 'Shipped'), ('Delivered', 'Delivered')])
+    driver = models.ForeignKey(Driver, null=True, blank=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.shipment_id)
