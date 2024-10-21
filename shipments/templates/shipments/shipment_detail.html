@@ -1,13 +1,15 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block content %}
-<h1>Shipment {{ shipment.shipment_id }}</h1>
-
-<ul>
-    <li>Origin: {{ shipment.origin }}</li>
-    <li>Destination: {{ shipment.destination }}</li>
-    <li>Status: {{ shipment.status }}</li>
-    <li>Driver: {{ shipment.driver }}</li>
-</ul>
-
-<a href="{% url 'shipments_list' %}" class="btn btn-secondary">Back to List</a>
+    <h2>Shipment Details</h2>
+    <p><strong>ID:</strong> {{ shipment.shipment_id }}</p>
+    <p><strong>Origin:</strong> {{ shipment.origin }}</p>
+    <p><strong>Destination:</strong> {{ shipment.destination }}</p>
+    <p><strong>Status:</strong> {{ shipment.status }}</p>
+{% if shipment.driver %}
+  <p><strong>Driver:</strong> {{ shipment.driver.name }}</p>
+{% else %}
+  <p><strong>Driver:</strong> Not Assigned</p>
+{% endif %}
+    <a href="{% url 'shipments_list' %}" class="btn btn-primary">Back to List</a>
 {% endblock %}

@@ -4,7 +4,7 @@ from drivers.models import Driver
 
 
 class Shipment(models.Model):
-    shipment_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    shipment_id = models.AutoField(primary_key=True)
     origin = models.CharField(max_length=255)
     destination = models.CharField(max_length=255)
     status = models.CharField(max_length=50, choices=[('Pending', 'Pending'), ('Shipped', 'Shipped'), ('Delivered', 'Delivered')])
