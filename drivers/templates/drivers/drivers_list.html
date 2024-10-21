@@ -5,8 +5,9 @@
     <thead>
         <tr>
             <th>Driver Name</th>
-            <th>License Number</th>
+            <th>Vehicle Number</th>
             <th>Phone</th>
+            <th>Available</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -14,16 +15,20 @@
         {% for driver in drivers %}
         <tr>
             <td>{{ driver.name }}</td>
-            <td>{{ driver.license_number }}</td>
-            <td>{{ driver.phone }}</td>
-            <td>
+            <td>{{ driver.vehicle_number }}</td>
+            <td>{{ driver.phone_number }}</td>
+            <td>{{driver.is_available}}</td>
+             <td>
                 <a href="{% url 'driver_detail' driver.pk %}" class="btn btn-info">Details</a>
                 <a href="{% url 'driver_edit' driver.pk %}" class="btn btn-warning">Edit</a>
-                <a href="{% url 'driver_delete' driver.pk %}" class="btn btn-danger">Delete</a>
+                <form action="{% url 'driver_delete' driver.pk %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<a href="{% url 'driver_create' %}" class="btn btn-primary">Add New Driver</a>
+<a href="{% url 'drivers_create' %}" class="btn btn-primary">Add New Driver</a>
 {% endblock %}

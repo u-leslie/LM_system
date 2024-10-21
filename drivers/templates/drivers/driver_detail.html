@@ -3,8 +3,8 @@
 <h1>Driver {{ driver.name }}</h1>
 
 <ul>
-    <li>License Number: {{ driver.license_number }}</li>
-    <li>Phone: {{ driver.phone }}</li>
+    <li>Vehicle number {{ driver.vehicle_number }}</li>
+    <li>Phone: {{ driver.phone_number}}</li>
 </ul>
 
 <a href="{% url 'drivers_list' %}" class="btn btn-secondary">Back to List</a>
