@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Delivery</title>
+</head>
+<body>
+    <h1>Create Delivery</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Delivery</button>
+    </form>
+    <a href="{% url 'deliveries_list' %}">Back to Delivery List</a>
+</body>
+</html>
+
+{% endblock %}

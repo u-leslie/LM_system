@@ -1,5 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Welcome to the Logistics Management System</h1>
-<p>Use the menu above to manage shipments, drivers, and track deliveries.</p>
+<div class="text-center">
+    <h1 class="text-4xl font-bold text-indigo-600 mb-6">Welcome to the Logistics Management System</h1>
+    <p class="text-lg text-gray-700 mb-12">Use the menu above to manage shipments, drivers, and track deliveries.</p>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Manage Shipments</h2>
+        <p class="text-gray-600 mb-6">View, edit, and manage all your shipments in one place.</p>
+        <a href="{% url 'shipments_list' %}" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md">
+            Go to Shipments
+        </a>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Track Deliveries</h2>
+        <p class="text-gray-600 mb-6">Track the status of deliveries in real time.</p>
+        <a href="{% url 'deliveries_list' %}" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md">
+            Track Now
+        </a>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-xl transition-shadow duration-300">
+        <h2 class="text-2xl font-semibold text-indigo-600 mb-4">Manage Drivers</h2>
+        <p class="text-gray-600 mb-6">Add, edit, or remove drivers from the system.</p>
+        <a href="{% url 'drivers_list' %}" class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md">
+            Go to Drivers
+        </a>
+    </div>
+</div>
+
+<div class="mt-12 bg-white shadow-lg p-6 rounded-lg">
+    <h2 class="text-3xl font-bold text-center text-indigo-600 mb-6">System Overview</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+            <p class="text-5xl font-bold text-indigo-600">150</p>
+            <p class="text-gray-600">Shipments</p>
+        </div>
+
+        <div class="text-center">
+            <p class="text-5xl font-bold text-indigo-600">125</p>
+            <p class="text-gray-600">Deliveries</p>
+        </div>
+
+        <div class="text-center">
+            <p class="text-5xl font-bold text-indigo-600">30</p>
+            <p class="text-gray-600">Drivers</p>
+        </div>
+        <div class="text-center">
+            <p class="text-5xl font-bold text-indigo-600">10</p>
+            <p class="text-gray-600">Pending Tasks</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

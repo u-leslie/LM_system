@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-indigo-600 mb-6">Deliveries</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Delivery ID</th>
+                <th>Shipment ID</th>
+                <th>Driver</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for delivery in deliveries %}
+            <tr>
+                <td>{{ delivery.delivery_id }}</td>
+                <td>{{ delivery.shipment.shipment_id }}</td>
+                <td>{{ delivery.driver.user.username }}</td>
+                <td>
+                    <span class="badge {% if delivery.delivery_status == 'delivered' %}bg-success{% else %}bg-warning{% endif %}">
+                        {{ delivery.delivery_status }}
+                    </span>
+                </td>
+                <td>
+                    <a href="{% url 'delivery_detail' delivery.delivery_id %}" class="btn btn-info btn-sm">View Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="{% url 'delivery_create' %}" class="btn btn-primary">Add New Delivery</a>
+{% endblock %}

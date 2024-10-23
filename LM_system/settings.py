@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'shipments',
     'drivers',
+    'deliveries'
 ]
 
 MIDDLEWARE = [

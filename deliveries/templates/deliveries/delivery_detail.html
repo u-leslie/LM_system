@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold text-indigo-600 mb-6">Delivery Details: {{ delivery.delivery_id }}</h1>
+
+<div class="bg-white shadow-lg p-6 rounded-lg">
+    <p><strong>Shipment ID:</strong> {{ delivery.shipment.shipment_id }}</p>
+    <p><strong>Driver:</strong> {{ delivery.driver.user.username }}</p>
+    <p><strong>Status:</strong> {{ delivery.status }}</p>
+    <p><strong>Delivery Date:</strong> {{ delivery.delivery_date }}</p>
+</div>
+
+<a href="{% url 'deliveries_list' %}" class="mt-4 inline-block text-indigo-600 hover:underline">Back to Deliveries List</a>
+{% endblock %}
