@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -19,6 +20,7 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})
 
+
 def user_login(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -28,13 +30,19 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('profile')  
+
+                request.session['username'] = user.username 
+                request.session['last_login'] = str(datetime.now())  
+                request.session.set_expiry(3600) 
+
+                return redirect('profile')
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
     else:
         form = AuthenticationForm()
+
     return render(request, 'accounts/login.html', {'form': form})
 
 @login_required

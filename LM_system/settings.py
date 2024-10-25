@@ -55,6 +55,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'LM_system.urls'
 
+SESSION_COOKIE_AGE = 1800  
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+LOGIN_URL = 'login'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
