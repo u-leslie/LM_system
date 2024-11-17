@@ -8,7 +8,7 @@ class DeliveryForm(forms.ModelForm):
         widgets = {
             'delivery_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'delivery_status': forms.Select(),
-            'delivered_by': forms.TextInput(attrs={'placeholder': 'Enter name of person delivering'}),
+            'delivered_by': forms.TextInput(attrs={'placeholder': 'Enter name of owner'}),
             'shipment': forms.Select(),
             'driver': forms.Select(),
         }

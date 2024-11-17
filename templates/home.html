@@ -35,23 +35,25 @@
     <h2 class="text-3xl font-bold text-center text-indigo-600 mb-6">System Overview</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
-            <p class="text-5xl font-bold text-indigo-600">150</p>
+            <p class="text-5xl font-bold text-indigo-600">{{ shipment_count }}</p>
             <p class="text-gray-600">Shipments</p>
         </div>
 
         <div class="text-center">
-            <p class="text-5xl font-bold text-indigo-600">125</p>
+            <p class="text-5xl font-bold text-indigo-600">{{ delivery_count }}</p>
             <p class="text-gray-600">Deliveries</p>
         </div>
 
         <div class="text-center">
-            <p class="text-5xl font-bold text-indigo-600">30</p>
+            <p class="text-5xl font-bold text-indigo-600">{{ driver_count }}</p>
             <p class="text-gray-600">Drivers</p>
         </div>
+
         <div class="text-center">
-            <p class="text-5xl font-bold text-indigo-600">10</p>
+            <p class="text-5xl font-bold text-indigo-600">{{ pending_tasks_count }}</p>
             <p class="text-gray-600">Pending Tasks</p>
         </div>
     </div>
 </div>
+
 {% endblock %}

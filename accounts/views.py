@@ -1,9 +1,10 @@
-import datetime
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from deliveries.models import Delivery
 from shipments.models import Shipment 
 from drivers.models import Driver
 
@@ -50,11 +51,26 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
-def home(request):
-    return render(request, 'home.html')
+# def home(request):
+#     return render(request, 'home.html')
 
 @login_required
 def profile(request):
     shipments = Shipment.objects.filter(user=request.user) 
     drivers = Driver.objects.filter(user=request.user) 
     return render(request, 'accounts/profile.html', {'shipments': shipments, 'drivers': drivers})
+
+
+def home(request):
+    shipment_count = Shipment.objects.count()
+    delivery_count = Delivery.objects.count()
+    driver_count = Driver.objects.count()
+    pending_tasks_count = Delivery.objects.filter(delivery_status='Pending').count()  # Adjust as needed
+
+    context = {
+        'shipment_count': shipment_count,
+        'delivery_count': delivery_count,
+        'driver_count': driver_count,
+        'pending_tasks_count': pending_tasks_count,
+    }
+    return render(request, 'home.html', context)
