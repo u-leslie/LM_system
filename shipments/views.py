@@ -9,20 +9,18 @@ def shipment_list(request):
     shipments = Shipment.objects.filter(user=request.user) 
     return render(request, 'shipments/shipments_list.html', {'shipments': shipments})
 
-# Shipment details (login required)
 @login_required
 def shipment_detail(request, pk):
     shipment = get_object_or_404(Shipment, pk=pk, user=request.user)  
     return render(request, 'shipments/shipment_detail.html', {'shipment': shipment})
 
-# Create a new shipment (login required)
 @login_required
 def shipment_create(request):
     if request.method == 'POST':
         form = ShipmentForm(request.POST)
         if form.is_valid():
-            shipment = form.save(commit=False)  # Get the form data without saving it to the DB yet
-            shipment.user = request.user  # Assign the logged-in user as the owner
+            shipment = form.save(commit=False) 
+            shipment.user = request.user  
             shipment.save()
             return redirect('shipments_list')
     else:
@@ -30,7 +28,6 @@ def shipment_create(request):
 
     return render(request, 'shipments/shipment_form.html', {'form': form})
 
-# Edit an existing shipment (login required)
 @login_required
 def shipment_edit(request, pk):
     shipment = get_object_or_404(Shipment, pk=pk, user=request.user)  # Ensure the shipment belongs to the user
@@ -44,7 +41,6 @@ def shipment_edit(request, pk):
     
     return render(request, 'shipments/shipment_edit.html', {'form': form})
 
-# Delete a shipment (login required)
 @login_required
 def shipment_delete(request, pk):
     shipment = get_object_or_404(Shipment, pk=pk, user=request.user)  # Ensure the shipment belongs to the user

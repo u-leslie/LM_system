@@ -14,7 +14,8 @@ def register(request):
         if form.is_valid():
             user = form.save() 
             login(request, user)
-            return redirect('home')  
+            messages.success(request, "Registration successful! Please log in.")
+            return redirect('login')  
         else:
             messages.error(request, "Registration failed. Please try again.")
     else:
@@ -31,11 +32,9 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-
                 request.session['username'] = user.username 
                 request.session['last_login'] = str(datetime.now())  
                 request.session.set_expiry(3600) 
-
                 return redirect('profile')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -65,7 +64,7 @@ def home(request):
     shipment_count = Shipment.objects.count()
     delivery_count = Delivery.objects.count()
     driver_count = Driver.objects.count()
-    pending_tasks_count = Delivery.objects.filter(delivery_status='Pending').count()  # Adjust as needed
+    pending_tasks_count = Shipment.objects.filter(status='Pending').count()  
 
     context = {
         'shipment_count': shipment_count,

@@ -20,7 +20,7 @@ def delivery_create(request):
         form = DeliveryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('deliveries_list')  # Redirect to a delivery list or success page
+            return redirect('deliveries_list') 
     else:
         form = DeliveryForm()
     

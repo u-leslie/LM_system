@@ -1,15 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Shipment Details</h2>
-    <p><strong>ID:</strong> {{ shipment.shipment_id }}</p>
-    <p><strong>Origin:</strong> {{ shipment.origin }}</p>
-    <p><strong>Destination:</strong> {{ shipment.destination }}</p>
-    <p><strong>Status:</strong> {{ shipment.status }}</p>
-{% if shipment.driver %}
-  <p><strong>Driver:</strong> {{ shipment.driver.name }}</p>
-{% else %}
-  <p><strong>Driver:</strong> Not Assigned</p>
-{% endif %}
-    <a href="{% url 'shipments_list' %}" class="btn btn-primary">Back to List</a>
+<div class="flex justify-center  bg-gray-100 py-12">
+    <!-- Shipment Details Section -->
+    <div class="max-w-3xl w-full px-8 py-8 bg-white rounded-lg shadow-xl space-y-6">
+        <h2 class="text-xl font-bold text-center text-blue-500">Shipment Details</h2>
+        
+        <div class="space-y-4">
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">ID:</strong> <span class="text-gray-700">{{ shipment.shipment_id }}</span>
+            </p>
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">Origin:</strong> <span class="text-gray-700">{{ shipment.origin }}</span>
+            </p>
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">Destination:</strong> <span class="text-gray-700">{{ shipment.destination }}</span>
+            </p>
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">Status:</strong> 
+                <span class="text-gray-700">
+                    {% if shipment.status == 'Delivered' %}
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">{{ shipment.status }}</span>
+                    {% else %}
+                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">{{ shipment.status }}</span>
+                    {% endif %}
+                </span>
+            </p>
+
+            {% if shipment.driver %}
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">Driver:</strong> <span class="text-gray-700">{{ shipment.driver.name }}</span>
+            </p>
+            {% else %}
+            <p class="text-lg font-medium text-gray-800">
+                <strong class="text-blue-500">Driver:</strong> <span class="text-gray-700">Not Assigned</span>
+            </p>
+            {% endif %}
+        </div>
+
+        <div class="flex justify-center">
+            <a href="{% url 'shipments_list' %}" class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition duration-300">
+                Back to List
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
