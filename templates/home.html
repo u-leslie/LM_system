@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class="text-center">
     <h1 class="text-4xl font-bold text-blue-500 mb-6">Welcome to the Logistics Management System</h1>
@@ -54,6 +55,57 @@
             <p class="text-gray-600">Pending Tasks</p>
         </div>
     </div>
+
+    <!-- Chart.js Bar Chart -->
+    <div class="mt-8">
+        <canvas id="systemOverviewChart"></canvas>
+    </div>
 </div>
+
+<script>
+    const data = {
+        labels: ['Shipments', 'Deliveries', 'Drivers', 'Pending Tasks'],
+        datasets: [{
+            label: 'System Overview',
+            data: [{{ shipment_count }}, {{ delivery_count }}, {{ driver_count }}, {{ pending_tasks_count }}],
+            backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'],
+            borderColor: ['#2563eb', '#16a34a', '#d97706', '#dc2626'],
+            borderWidth: 1
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    };
+
+    const systemOverviewChart = new Chart(
+        document.getElementById('systemOverviewChart'),
+        config
+    );
+</script>
 
 {% endblock %}
