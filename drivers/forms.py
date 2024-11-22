@@ -26,5 +26,5 @@ class DriverForm(forms.ModelForm):
             }),
             'is_available': forms.Select(attrs={
                 'class': 'w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
-            }),
+            }, choices=[(True, 'Yes'), (False, 'No')]),
         }
